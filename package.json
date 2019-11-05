@@ -1,0 +1,65 @@
+{
+  "name": "examination-FE",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "node_dev": "./node_modules/.bin/nodemon src/server/common/app.js",
+    "start": "concurrently \"npm run serve\" \"npm run node_dev\""
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "concurrently": "^5.0.0",
+    "core-js": "^3.3.2",
+    "element-ui": "^2.12.0",
+    "http-proxy-middleware": "^0.20.0",
+    "koa": "^2.11.0",
+    "koa-route": "^3.2.0",
+    "live-server": "^1.2.1",
+    "node-fetch": "^2.6.0",
+    "node-sass": "^4.13.0",
+    "nodemon": "^1.19.4",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.0.0",
+    "@vue/cli-plugin-eslint": "^4.0.0",
+    "@vue/cli-service": "^4.0.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "koa-body": "^4.1.1",
+    "sass-loader": "^8.0.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {
+      "no-console": "off",
+      "no-unused-vars": "off"
+    },
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
