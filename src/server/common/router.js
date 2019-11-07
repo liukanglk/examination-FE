@@ -1,14 +1,41 @@
-const route = require('koa-route');
+const login = require("./../login");
 const Koa = require('koa');
 const app = new Koa();
 
+const loginRouter = {
+    judgeUser: async ctx => {
+        try {
+            let query = ctx.query;
+            console.log(query.username, query.password, "query");
+            let isUser = await login.judgeUser(query.username, query.password);
+            ctx.body = isUser;
+        } catch (e) {
+            console.log(e);
+        }
+    },
 
-app.use(route.get('/judgeuser', judgeUser));
-app.use(route.get('/adduser', add));
-app.use(route.get('/updateuser', update));
 
-const routerPath = {
-    "/judeguser": judgeUser,
-    '/adduser': add,
-    '/updateuser': update
-}
+    addUser: async ctx => {
+        try {
+            let query = ctx.query;
+            let isAddSuccess = await login.addUser(query.username, query.password);
+            ctx.body = isAddSuccess;
+        } catch (e) {
+            console.log(e);
+        }
+    },
+
+    updateUser: async ctx => {
+        try {
+            let query = ctx.query;
+            let isAddSuccess = await login.updateUser(query.username, query.password);
+            ctx.body = isAddSuccess;
+        } catch (e) {
+            console.log(e);
+        }
+
+    },
+};
+
+
+module.exports = {loginRouter};

@@ -1,11 +1,7 @@
 const route = require('koa-route');
 const Koa = require('koa');
 const app = new Koa();
-const fetch = require("node-fetch");
-// const getUser = require("../login/judgeUser");
-// const addUser = require("../login/addUser");
-// const updateUser = require("../login/updateUser");
-const login = require("./../login")
+const path = require("./path")
 
 app.use(async (ctx, next) => {
     ctx.set('Access-Control-Allow-Origin', '*');
@@ -18,42 +14,10 @@ app.use(async (ctx, next) => {
     }
 });
 
-
-const judgeUser = async ctx => {
-    try {
-        let query = ctx.query;
-        let isUser = await login.judgeUser(query.username, query.password);
-        ctx.body = isUser;
-    } catch (e) {
-        console.log(e);
-    }
-
-};
-
-const add = async ctx => {
-    try {
-        let query = ctx.query;
-        let isAddSuccess = await login.addUser(query.username, query.password);
-        ctx.body = isAddSuccess;
-    } catch (e) {
-        console.log(e);
-    }
-};
-
-const update = async ctx => {
-    try {
-        let query = ctx.query;
-        let isAddSuccess = await login.updateUser(query.username, query.password);
-        ctx.body = isAddSuccess;
-    } catch (e) {
-        console.log(e);
-    }
-};
-
-
-app.use(route.get('/judgeuser', judgeUser));
-app.use(route.get('/adduser', add));
-app.use(route.get('/updateuser', update));
+let loginPath = path.login;
+for (let lp in loginPath) {
+    app.use(route.get(lp, loginPath[lp]));
+}
 
 
 app.listen(3000, () => {
