@@ -2,9 +2,10 @@ const route = require('koa-route');
 const Koa = require('koa');
 const app = new Koa();
 const fetch = require("node-fetch");
-const getUser = require("../login/judgeUser");
-const addUser = require("../login/addUser");
-const updateUser = require("../login/updateUser");
+// const getUser = require("../login/judgeUser");
+// const addUser = require("../login/addUser");
+// const updateUser = require("../login/updateUser");
+const login = require("./../login")
 
 app.use(async (ctx, next) => {
     ctx.set('Access-Control-Allow-Origin', '*');
@@ -21,7 +22,7 @@ app.use(async (ctx, next) => {
 const judgeUser = async ctx => {
     try {
         let query = ctx.query;
-        let isUser = await getUser.judgeUser(query.username, query.password);
+        let isUser = await login.judgeUser(query.username, query.password);
         ctx.body = isUser;
     } catch (e) {
         console.log(e);
@@ -32,7 +33,7 @@ const judgeUser = async ctx => {
 const add = async ctx => {
     try {
         let query = ctx.query;
-        let isAddSuccess = await addUser.addUser(query.username, query.password);
+        let isAddSuccess = await login.addUser(query.username, query.password);
         ctx.body = isAddSuccess;
     } catch (e) {
         console.log(e);
@@ -42,7 +43,7 @@ const add = async ctx => {
 const update = async ctx => {
     try {
         let query = ctx.query;
-        let isAddSuccess = await updateUser.updateUser(query.username, query.password);
+        let isAddSuccess = await login.updateUser(query.username, query.password);
         ctx.body = isAddSuccess;
     } catch (e) {
         console.log(e);

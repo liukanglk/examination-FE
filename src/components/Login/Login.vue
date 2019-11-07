@@ -16,37 +16,7 @@
 
             <Register :isVisible.sync="registerFormVisable"/>
 
-
-            <!--            <el-dialog title="用户注册" :visible.sync="registerFormVisable">-->
-            <!--                <el-form :model="form">-->
-            <!--                    <el-form-item label="用户名" :label-width="formLabelWidth">-->
-            <!--                        <el-input v-model="form.name" autocomplete="off"></el-input>-->
-            <!--                    </el-form-item>-->
-            <!--                    <el-form-item label="密码" :label-width="formLabelWidth">-->
-            <!--                        <el-input v-model="form.password" autocomplete="off"></el-input>-->
-            <!--                    </el-form-item>-->
-            <!--                </el-form>-->
-            <!--                <div slot="footer" class="dialog-footer">-->
-            <!--                    <el-button @click="registerFormVisable = false">取 消</el-button>-->
-            <!--                    <el-button type="primary" @click="register">确 定</el-button>-->
-            <!--                </div>-->
-            <!--            </el-dialog>-->
-
-            <!--            <el-dialog title="修改密码" :visible.sync="updateForm">-->
-            <!--                <el-form :model="form">-->
-            <!--                    <el-form-item label="用户名" :label-width="formLabelWidth">-->
-            <!--                        <el-input v-model="form.name" autocomplete="off"></el-input>-->
-            <!--                    </el-form-item>-->
-            <!--                    <el-form-item label="密码" :label-width="formLabelWidth">-->
-            <!--                        <el-input v-model="form.password" autocomplete="off"></el-input>-->
-            <!--                    </el-form-item>-->
-            <!--                </el-form>-->
-            <!--                <div slot="footer" class="dialog-footer">-->
-            <!--                    <el-button @click="updateForm = false">取 消</el-button>-->
-            <!--                    <el-button type="primary" @click="updatePassword">确 定</el-button>-->
-            <!--                </div>-->
-            <!--            </el-dialog>-->
-            <Update  :isVisible.sync="updateFormVisible"></Update>
+            <Update :isVisible.sync="updateFormVisible"/>
 
         </div>
         <Footer/>
