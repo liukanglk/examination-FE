@@ -1,6 +1,6 @@
 <template>
     <div id="login">
-        <Header/>
+        <Header :username="name"/>
         <div id="login-in">
             <p class="login-text">用户名</p>
             <el-input placeholder="请输入用户名" v-model="name" clearable/>
@@ -11,15 +11,35 @@
             <el-button type="primary" round @click="findUser">登录</el-button>
             <el-button @click="preRegister">注册</el-button>
             <el-button @click="preUpdatePassword">修改密码</el-button>
+            <el-button @click="allUser">用户名单</el-button>
+
 
             <br/>
 
             <Register :isVisible.sync="registerFormVisable"/>
-
             <Update :isVisible.sync="updateFormVisible"/>
-
         </div>
+
+        <el-table
+                :data="tableData"
+                stripe
+                style="width: 100%">
+
+            <el-table-column
+                    prop="name"
+                    label="姓名"
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    prop="address"
+                    label="地址">
+            </el-table-column>
+        </el-table>
+
+
         <Footer/>
+
+        <router-view></router-view>
     </div>
 </template>
 
@@ -30,11 +50,13 @@
     import Register from "./Register";
     import Update from "./Update";
 
+
     export default {
         name: "Login",
         components: {Update, Register, Footer, Header},
         data() {
             return {
+                tableData: [],
                 father: "fa",
                 name: "liu",
                 password: "1111",
@@ -74,6 +96,7 @@
                             alert("登陆失败")
                         } else {
                             alert("登录成功");
+                            this.$router.push('/home')
                         }
                     })
                 } catch (e) {
@@ -102,12 +125,32 @@
                 this.registerForm = false;
             },
 
+            async allUser() {
+                this.tableData = [];
+                await axios.get(`http://127.0.0.1:3000/finduser`)
+                    .then(res => {
+                        // console.log(res);
+                        let arrTmp = res.data.rows;
+                        arrTmp.forEach(us => {
+                            this.tableData.push({
+                                name: us.username,
+                                address: us.password
+                            })
+                        })
+                    })
+            },
             preUpdatePassword() {
                 this.updateFormVisible = true;
             },
 
             async updatePassword() {
-
+                await axios.get(`http://127.0.0.1:3000/adduser?username=${this.form.name}&password=${this.form.password}`)
+                    .then(res => {
+                        console.log(res);
+                    })
+            },
+            formatter(row, column) {
+                return row.address;
             }
         }
     }

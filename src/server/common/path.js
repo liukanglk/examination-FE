@@ -4,7 +4,8 @@ const path = {
     login: {
         "/adduser": router.loginRouter.addUser,
         "/judgeuser": router.loginRouter.judgeUser,
-        "/updateuser": router.loginRouter.updateUser
+        "/updateuser": router.loginRouter.updateUser,
+        "/finduser":router.loginRouter.findUser
     }
 };
 

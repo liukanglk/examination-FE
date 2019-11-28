@@ -57,5 +57,28 @@ const updateUser = async (username, password) => {
     }
 };
 
+//查看所有用户名单
+const findUser = async () => {
+    console.log("1");
+    try {
+        return await fetch(`http://127.0.0.1:8081/examination_RE_war_exploded/login/userslist`)
+            .then(res => res.json())
+        // .then(users => {
+        //     let userInfo = users.rows[0];
+        //     let userSignal = "";
+        //     if (users.totals === 0) {
+        //         userSignal = "errorUser";
+        //     } else if (users.totals === 1 && userInfo.password !== password) {
+        //         userSignal = "errorPassword"
+        //     } else {
+        //         userSignal = "success";
+        //     }
+        //     return userSignal;
+        // });
+    } catch (e) {
+        console.log(e);
+    }
+};
 
-module.exports = {addUser, judgeUser, updateUser};
+
+module.exports = {addUser, judgeUser, updateUser, findUser};

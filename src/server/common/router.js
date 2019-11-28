@@ -28,13 +28,23 @@ const loginRouter = {
     updateUser: async ctx => {
         try {
             let query = ctx.query;
-            let isAddSuccess = await login.updateUser(query.username, query.password);
-            ctx.body = isAddSuccess;
+            let isUpdateSuccess = await login.updateUser(query.username, query.password);
+            ctx.body = isUpdateSuccess;
         } catch (e) {
             console.log(e);
         }
 
     },
+
+    findUser: async ctx => {
+        try {
+            let query = ctx.query;
+            let isFindSuccess = await login.findUser();
+            ctx.body = isFindSuccess;
+        } catch (e) {
+            console.log(e);
+        }
+    }
 };
 
 
