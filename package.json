@@ -21,7 +21,7 @@
     "koa": "^2.11.0",
     "koa-route": "^3.2.0",
     "live-server": "^1.2.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "node-sass": "^4.13.0",
     "nodemon": "^1.19.4",
     "vue": "^2.6.10",
